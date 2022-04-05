@@ -1,12 +1,21 @@
 <?php
 require "controller/controller.php";
-$args=getopt("m:", ["args:"]);
+$args=getopt("m:", ["accept:","args:"]);
+try{
 if($argc>1){
 	if(isItServices($args['m'])){
-		var_dump($args['args']);
-		callRemoteWebServices($args['m'], explode("/", $args["args"]));
+		if($args["accept"] and $args['args']){
+		callRemoteWebServices($args['m'], $args['accept'], $args['args']);
+		}else{
+			throw new Exception("php route.php -m methode --accept typeDeDonne --args parametres ");
+		}
 	}else{
-		die("veiller entrer des parametres");
+		throw new Exception($args['m']." : cette methodes nexiste pas ");
 	}
+}else{
+	throw new Exception("nombre darguments insuffisant");
+}
+}catch(Exception $e){
+	die("Error : ".$e->getMessage());
 }
 ?>
