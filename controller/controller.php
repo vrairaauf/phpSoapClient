@@ -10,9 +10,9 @@ function isItServices($methode){
 }
 
 
-function callRemoteWebServices($methodes, $name){
+function callRemoteWebServices($methodes,$type ,$args){
 	$connexion=callWs\Connect::get_connexion(dirname(__DIR__)."/callWS/config/config.php");
 	$webservices=new callWs\WebServices($connexion);
-	die(var_dump($webservices->apelleMethode($methodes, $name)));
+	die(var_dump($webservices->apelleMethode($methodes, $type, $args)));
 }
 ?>
