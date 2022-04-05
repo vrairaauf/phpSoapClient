@@ -7,7 +7,7 @@ namespace Test;
 class Monitoring{
 	private $allPossibleMethods;
 	public function __construct($arrayPath){
-		$this->allPossibleMethods=$arrayPath;
+		$this->allPossibleMethods=require($arrayPath);
 	}
 	public function isItInMenu($function){
 		if(in_array($function, $this->allPossibleMethods)){
